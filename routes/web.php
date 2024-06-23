@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
 
@@ -23,5 +24,6 @@ Route::get('/home', function () {
     return view('index');
 });
 
+Route::resource('/product', ProductController::class);
 
 Route::resource('/providers', ProviderController::class);
