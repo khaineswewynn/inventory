@@ -23,6 +23,9 @@ return new class extends Migration
             $table->integer('refrigerated');
             $table->timestamps();
         });
+        Schema::table('products',function(Blueprint $table){
+            $table->foreign('category_id')->on('categories')->references('id')->onDelete('cascade');
+        });
     }
 
     /**

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','address'];
+
+    public function warehouses()
+    {
+        return $this->hasMany(Warehouse::class);
+    }
 }

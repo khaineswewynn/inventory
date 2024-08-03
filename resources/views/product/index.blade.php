@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('main')
-    <div class="container">
+    <div class="container mt-1">
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between align-items-center" role="alert">
                 <div>

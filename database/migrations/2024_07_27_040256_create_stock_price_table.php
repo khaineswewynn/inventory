@@ -13,12 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_order_details', function (Blueprint $table) {
+        Schema::create('stock_price', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('product_id');
+            $table->decimal('buy_price', 8, 2); 
+            $table->decimal('sell_price', 8, 2); 
             $table->integer('qty');
+            $table->decimal('Percent',8,2);
             $table->timestamps();
+        });
+        Schema::table('stock_price',function(Blueprint $table){
+            $table->foreign('product_id')->on('products')->references('id')->onDelete('cascade');
         });
     }
 
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_order_details');
+        Schema::dropIfExists('stock_price');
     }
 };
