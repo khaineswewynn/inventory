@@ -2,6 +2,9 @@
 
 @include('layout.sidebar')
 		
-@yield('main')
-		
-@include('layout.footer')
+<div class="container">
+    <div class="content">
+        @yield('main')
+    </div>
+    @include('layout.footer')
+</div>
