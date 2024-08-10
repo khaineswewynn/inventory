@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @include('layout.nav')
 @include('layout.sidebar')
         {{-- <!-- partial -->
@@ -725,3 +726,6 @@
           </div>
           <!-- content-wrapper ends --> --}}
 @include('layout.footer')
+=======
+@extends('layout.master')
+>>>>>>> 73f16fa (updated purchase migrations)
