@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\WarehouseController;
 
 /*
@@ -26,6 +27,8 @@ Route::get('/', function () {
 Route::resource('/customer', CustomerController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
+Route::get('/product-price/{id}', [ProductController::class, 'getPrice']);
 Route::resource('/provider', ProviderController::class);
 Route::resource('/location', LocationController::class);
 Route::resource('/warehouse', WarehouseController::class);
+Route::resource('/sale', SalesController::class);

@@ -9,7 +9,15 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name', 'email', 'phone', 'address',
-    ];
+    protected $fillable = ['name', 'email', 'phone', 'address'];
+
+    public function sales()
+    {
+        return $this->hasMany(Sales::class);
+    }
+
+    public function salesDetails()
+    {
+        return $this->hasMany(SalesDetails::class);
+    }
 }

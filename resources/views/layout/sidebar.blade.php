@@ -44,6 +44,12 @@
                     <span class="menu-title">Warehouse</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('sale.index') }}">
+                    <i class="menu-icon mdi mdi-floor-plan"></i>
+                    <span class="menu-title">Sales</span>
+                </a>
+            </li>
             </li>
         </ul>
     </nav>

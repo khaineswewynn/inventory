@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -38,24 +39,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'code' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-            'reorder_qty' => 'required',
-            'refrigerated' => 'required',
-        ],
-        [
-            'name.required' => 'Please enter product name.',
-            'code.required' => 'Please enter product code.',
-            'description.required' => 'Please enter product description.',
-            'category_id.required' => 'Please select category.',
-            'reorder_qty.required' => 'Please enter reorder qty.',
-            'refrigerated.required' => 'Please enter refrigerated.',
-        ]);     
+        $request->validate(
+            [
+                'name' => 'required',
+                'code' => 'required',
+                'description' => 'required',
+                'category_id' => 'required',
+                'reorder_qty' => 'required',
+                'refrigerated' => 'required',
+            ],
+            [
+                'name.required' => 'Please enter product name.',
+                'code.required' => 'Please enter product code.',
+                'description.required' => 'Please enter product description.',
+                'category_id.required' => 'Please select category.',
+                'reorder_qty.required' => 'Please enter reorder qty.',
+                'refrigerated.required' => 'Please enter refrigerated.',
+            ]
+        );
         Product::create($request->except('__token'));
-        return redirect()->route('product.index')->with('success', 'Product added successfully.'); 
+        return redirect()->route('product.index')->with('success', 'Product added successfully.');
     }
 
     /**
@@ -93,22 +96,24 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        $request->validate([
-            'name' => 'required',
-            'code' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-            'reorder_qty' => 'required',
-            'refrigerated' => 'required',
-        ],
-        [
-            'name.required' => 'Please enter product name.',
-            'code.required' => 'Please enter product code.',
-            'description.required' => 'Please enter product description.',
-            'category_id.required' => 'Please select category.',
-            'reorder_qty.required' => 'Please enter reorder qty.',
-            'refrigerated.required' => 'Please enter refrigerated.',
-        ]); 
+        $request->validate(
+            [
+                'name' => 'required',
+                'code' => 'required',
+                'description' => 'required',
+                'category_id' => 'required',
+                'reorder_qty' => 'required',
+                'refrigerated' => 'required',
+            ],
+            [
+                'name.required' => 'Please enter product name.',
+                'code.required' => 'Please enter product code.',
+                'description.required' => 'Please enter product description.',
+                'category_id.required' => 'Please select category.',
+                'reorder_qty.required' => 'Please enter reorder qty.',
+                'refrigerated.required' => 'Please enter refrigerated.',
+            ]
+        );
         $product->update($request->except('__token'));
         return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
@@ -123,5 +128,14 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function getPrice($id)
+    {
+        $price = DB::table('stock_price')
+            ->where('product_id', $id)
+            ->value('sell_price');
+
+        return response()->json(['price' => $price]);
     }
 }
