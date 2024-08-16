@@ -65,11 +65,7 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
             <ul class="navbar-nav">
                 <li class="nav-item fw-semibold d-none d-lg-block ms-0">
-<<<<<<< HEAD
-                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">KaNaung</span></h1>
-=======
                     <h1 class="welcome-text">Good Morning</h1>
->>>>>>> 73f16fa (updated purchase migrations)
                     <h3 class="welcome-sub-text">Your performance summary this week </h3>
                 </li>
             </ul>

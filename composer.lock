@@ -732,8 +732,6 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "fruitcake/laravel-cors",
@@ -814,7 +812,6 @@
             ],
             "abandoned": true,
             "time": "2022-02-23T14:53:22+00:00"
->>>>>>> 73f16fa (updated purchase migrations)
         },
         {
             "name": "fruitcake/php-cors",
