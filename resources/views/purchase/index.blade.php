@@ -3,8 +3,8 @@
 @section('main')
     <section>
         <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
-            <h2 class="h4">Customers Info</h2>
-            <a href="{{ route('customer.create') }}" class="btn btn-primary btn-m mr-2">Create New Customer</a>
+            <h2 class="h4">Purchase Orders Info</h2>
+            <a href="{{ route('purchase.create') }}" class="btn btn-primary btn-m mr-2">Order New Purchase</a>
         </div>
 
         <!-- Success Alert -->
@@ -29,9 +29,9 @@
             </div>
         @endif
 
-        @if ($customers->isEmpty())
+        @if ($purchaseOrders->isEmpty())
             <div class="alert alert-info" role="alert">
-                No customers found.
+                No purchase found.
             </div>
         @else
             <div class="table-responsive">
@@ -39,29 +39,29 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Order-No.</th>
+                            <th>Purchase Order Date</th>
+                            <th>Provider</th>
+                            <th>total</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($customers as $customer)
+                        @foreach ($purchaseOrders as $pOrder)
                             <tr>
-                                <td>{{ $customer->id }}</td>
-                                <td>{{ $customer->name }}</td>
-                                <td>{{ $customer->email }}</td>
-                                <td>{{ $customer->phone }}</td>
-                                <td>{{ $customer->address }}</td>
+                                <td>{{ $pOrder->id }}</td>
+                                <td>{{ $pOrder->order_no }}</td>
+                                <td>{{ $pOrder->purchaseorder_date }}</td>
+                                <td>{{ $pOrder->provider->name }}</td>
+                                <td>{{ $pOrder->total }}</td>
                                 <td>
-                                    <a href="{{ route('customer.show', $customer->id) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('purchase.show', $pOrder->id) }}" class="btn btn-info btn-sm">
                                         <i class="fa fa-eye"></i> View
                                     </a>
-                                    <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('purchase.edit', $pOrder->id) }}" class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
-                                    <form action="{{ route('customer.destroy', $customer->id) }}" method="POST" style="display:inline-block;">
+                                    <form action="{{ route('purchase.destroy', $pOrder->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">

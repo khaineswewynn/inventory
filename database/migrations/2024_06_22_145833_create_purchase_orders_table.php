@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('purchase_orders',function(Blueprint $table){
-            $table->foreign('provider_id')->on('provider')->references('id')->onDelete('cascade');
+            $table->foreign('provider_id')->on('providers')->references('id')->onDelete('cascade');
         });
         
     }

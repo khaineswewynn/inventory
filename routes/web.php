@@ -10,6 +10,7 @@ use App\Http\Controllers\LocationController;
 >>>>>>> 73f16fa (updated purchase migrations)
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WarehouseController;
 
 /*
@@ -38,4 +39,9 @@ Route::resource('/product', ProductController::class);
 Route::resource('/provider', ProviderController::class);
 Route::resource('/location', LocationController::class);
 Route::resource('/warehouse', WarehouseController::class);
+<<<<<<< HEAD
 >>>>>>> 73f16fa (updated purchase migrations)
+=======
+Route::resource('/purchase', PurchaseController::class);
+Route::get('invoice_download/{id}', [PurchaseController::class, 'download'])->name('invoice.download');
+>>>>>>> e9baf28 (Adding purchas)
