@@ -23,8 +23,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        Schema::table('users',function(Blueprint $table){
-            $table->foreign('role_id')->on('roles')->references('id')->onDelete('cascade');
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role_id')->default(1);
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 

@@ -50,6 +50,34 @@
                     <span class="menu-title">Sales</span>
                 </a>
             </li>
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ route('assign-permissions') }}">
+                    <i class="menu-icon mdi mdi-floor-plan"></i>
+                    <span class="menu-title">Roles & Permissions</span>
+                </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('assign-roles') }}">
+                    <i class="menu-icon mdi mdi-floor-plan"></i>
+                    <span class="menu-title">User roles</span>
+                </a>
+            </li> --}}
+            @php
+                $user = Auth::user();
+            @endphp
+            @if ($user && $user->role && $user->role->roles === 'Admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('assign-permissions') }}">
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">Roles & Permissions</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('assign-roles') }}">
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">User roles</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </nav>

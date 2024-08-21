@@ -41,12 +41,14 @@
                         <td class="d-flex">
                             <a href="{{ route('sale.edit', $sale->id) }}" class="btn btn-success p-2">Edit</a>
                             <a href="{{ route('sale.show', $sale->id) }}" class="btn btn-info p-2 mx-2">Details</a>
-                            <form action="{{ route('sale.destroy', $sale->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger p-2"
-                                    onclick="return confirm('Are you sure to delele this sales order?')">Delete</button>
-                            </form>
+                            @if (Auth::user()->role->roles === 'Admin')
+                                <form action="{{ route('sale.destroy', $sale->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger p-2"
+                                        onclick="return confirm('Are you sure to delete this sales order?')">Delete</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

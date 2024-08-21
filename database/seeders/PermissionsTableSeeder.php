@@ -29,6 +29,8 @@ class PermissionsTableSeeder extends Seeder
             ['role_id' => 1, 'route_name' => 'edit-stockprice'],
             ['role_id' => 1, 'route_name' => 'view-stockprice'],
             ['role_id' => 1, 'route_name' => 'delete-stockprice'],
+            ['role_id' => 1, 'route_name' => 'update-role-permissions'],
+            ['role_id' => 1, 'route_name' => 'update-user-role'], 
 
             ['role_id' => 2, 'route_name' => 'create-sales'],
             ['role_id' => 2, 'route_name' => 'edit-sales'],
@@ -44,8 +46,7 @@ class PermissionsTableSeeder extends Seeder
             ['role_id' => 2, 'route_name' => 'delete-stockprice'],
 
             ['role_id' => 3, 'route_name' => 'create-sales'],
-            ['role_id' => 4, 'route_name' => 'create-purchase']
-            
+            ['role_id' => 4, 'route_name' => 'create-purchase']       
         ]);
     }
 }
