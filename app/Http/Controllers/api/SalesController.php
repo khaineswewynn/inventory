@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sales;
@@ -15,32 +16,20 @@ class SalesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $sales = Sales::with('customer', 'salesDetails.product')->paginate(10);
 
-        return view('sale.index', compact('sales'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $products = Product::all();
-        $customers = Customer::all();
-        return view('sale.create_sales', ['products' => $products, 'customers' => $customers]);
+        return response()->json($sales);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -54,24 +43,9 @@ class SalesController extends Controller
             'products.*.price' => 'required|numeric',
             'products.*.qty' => 'required|integer|min:1',
             'products.*.total' => 'required|numeric',
-        ], [
-            'number.required' => 'The order number is required.',
-            'cus_id.required' => 'The customer ID is required.',
-            'cus_id.exists' => 'The selected customer does not exist.',
-            'email.required' => 'The customer email is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'phone.required' => 'The customer phone is required.',
-            'products.required' => 'At least one product is required.',
-            'products.array' => 'The products field must be an array.',
-            'products.*.product_id.required' => 'Each product must have a valid product ID.',
-            'products.*.product_id.exists' => 'The selected product does not exist.',
-            'products.*.price.required' => 'The price for each product is required.',
-            'products.*.qty.required' => 'The quantity for each product is required.',
-            'products.*.qty.min' => 'The quantity must be at least 1.',
-            'products.*.total.required' => 'The total for each product is required.',
         ]);
 
-        DB::transaction(function () use ($validatedData) {
+        $sale = DB::transaction(function () use ($validatedData) {
             $sale = Sales::create([
                 'date' => Carbon::today()->toDateString(),
                 'number' => $validatedData['number'],
@@ -89,37 +63,24 @@ class SalesController extends Controller
                     'total' => $product['total'],
                 ]);
             }
+
+            return $sale;
         });
 
-        return redirect()->route('sale.index')->with('success', 'Sale created successfully.');
+        return response()->json(['message' => 'Sale created successfully.', 'sale' => $sale], 201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         $sale = Sales::with('customer', 'salesDetails.product')->findOrFail($id);
 
-        return view('sale.show', compact('sale'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $sale = Sales::with('salesDetails')->findOrFail($id);
-        $customers = Customer::all();
-        $products = Product::all();
-
-        return view('sale.edit', compact('sale', 'customers', 'products'));
+        return response()->json($sale);
     }
 
     /**
@@ -127,7 +88,7 @@ class SalesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -141,24 +102,9 @@ class SalesController extends Controller
             'products.*.price' => 'required|numeric',
             'products.*.qty' => 'required|integer|min:1',
             'products.*.total' => 'required|numeric',
-        ], [
-            'number.required' => 'The order number is required.',
-            'cus_id.required' => 'The customer ID is required.',
-            'cus_id.exists' => 'The selected customer does not exist.',
-            'email.required' => 'The customer email is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'phone.required' => 'The customer phone is required.',
-            'products.required' => 'At least one product is required.',
-            'products.array' => 'The products field must be an array.',
-            'products.*.product_id.required' => 'Each product must have a valid product ID.',
-            'products.*.product_id.exists' => 'The selected product does not exist.',
-            'products.*.price.required' => 'The price for each product is required.',
-            'products.*.qty.required' => 'The quantity for each product is required.',
-            'products.*.qty.min' => 'The quantity must be at least 1.',
-            'products.*.total.required' => 'The total for each product is required.',
         ]);
 
-        DB::transaction(function () use ($validatedData, $id) {
+        $sale = DB::transaction(function () use ($validatedData, $id) {
             $sale = Sales::findOrFail($id);
             $sale->update([
                 'number' => $validatedData['number'],
@@ -178,16 +124,18 @@ class SalesController extends Controller
                     'total' => $product['total'],
                 ]);
             }
+
+            return $sale;
         });
 
-        return redirect()->route('sale.index')->with('success', 'Sale updated successfully.');
+        return response()->json(['message' => 'Sale updated successfully.', 'sale' => $sale]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -201,6 +149,6 @@ class SalesController extends Controller
             $sale->delete();
         });
 
-        return redirect()->route('sale.index')->with('success', 'Sale order deleted successfully.');
+        return response()->json(['message' => 'Sale deleted successfully.']);
     }
 }

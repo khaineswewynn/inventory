@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\WarehouseController;
 use App\Http\Controllers\Api\ProviderController;
+use App\Http\Controllers\Api\SalesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,6 +32,7 @@ Route::apiResource('customers', CustomerController::class);
 Route::apiResource('locations', LocationController::class);
 Route::apiResource('warehouse', WarehouseController::class);
 Route::apiResource('provider', ProviderController::class);
+Route::apiResource('sales', SalesController::class);
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);

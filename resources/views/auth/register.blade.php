@@ -26,47 +26,50 @@
      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Register</h1>
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg" style="width: 28rem;">
+            <div class="card-body">
+                <h1 class="card-title text-center">Register</h1>
+    
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+    
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+                    </div>
+    
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                    </div>
+    
+                    <div class="form-group mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+    
+                    <div class="form-group mb-4">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+                    </div>
+    
+                    <button class="btn btn-primary w-100" type="submit">Register</button>
+    
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </form>
+    
+                <p class="text-center mt-4">Already have an account? <a href="{{ route('login') }}">Login</a></p>
             </div>
-
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="confirm_password" class="form-label">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="form-control">
-            </div>
-
-            <button class="btn btn-primary" type="submit">Register</button>
-
-            <!-- Display validation errors -->
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </form>
-
-        <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
-    </div>
+        </div>
+    </div>    
 </body>
 </html>
