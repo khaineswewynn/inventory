@@ -29,4 +29,14 @@ class Product extends Model
     {
         return $this->hasOne(StockPrice::class);
     }
+
+    public function purchases()
+    {
+        return $this->belongsToMany(PurchaseOrders::class);
+    }
+
+    public function purchaseDetails()
+    {
+        return $this->hasMany(PurchaseDetails::class);
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\WarehouseController;
 
 /*
@@ -39,7 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/provider', ProviderController::class);
     Route::resource('/location', LocationController::class);
     Route::resource('/warehouse', WarehouseController::class);
-    // Route::resource('/sale', SalesController::class);
+    Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
+    Route::get('/stocks/details/{date}', [StockController::class, 'details'])->name('stocks.details');
     Route::resource('/sale', SalesController::class)->except(['destroy']);
     Route::middleware('check.permission:delete-sales')->group(function () {
         Route::delete('/sale/{sale}', [SalesController::class, 'destroy'])

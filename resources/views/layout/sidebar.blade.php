@@ -50,18 +50,12 @@
                     <span class="menu-title">Sales</span>
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('assign-permissions') }}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('stocks.index') }}">
                     <i class="menu-icon mdi mdi-floor-plan"></i>
-                    <span class="menu-title">Roles & Permissions</span>
+                    <span class="menu-title">Stock</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('assign-roles') }}">
-                    <i class="menu-icon mdi mdi-floor-plan"></i>
-                    <span class="menu-title">User roles</span>
-                </a>
-            </li> --}}
             @php
                 $user = Auth::user();
             @endphp
