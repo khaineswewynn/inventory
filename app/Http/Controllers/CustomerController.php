@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('permission:customer-index|customer-create|customer-edit|
+        customer-show|customer-delete',['only'=>['index']]);//index is function
+
+        $this->middleware('permission:customer-create',['only'=>['create','store']]);
+
+        $this->middleware('permission:customer-edit',['only'=>['edit','update']]);
+
+        $this->middleware('permission:customer-show',['only'=>['show']]);
+
+        $this->middleware('permission:customer-delete',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

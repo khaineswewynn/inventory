@@ -11,6 +11,18 @@ use PDF;
 
 class PurchaseController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:purchase-index|purchase-create|purchase-edit|
+        purchase-show|purchase-delete',['only'=>['index']]);//index is function
+
+        $this->middleware('permission:purchase-create',['only'=>['create','store']]);
+
+        $this->middleware('permission:purchase-edit',['only'=>['edit','update']]);
+
+        $this->middleware('permission:purchase-show',['only'=>['show']]);
+
+        $this->middleware('permission:purchase-delete',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

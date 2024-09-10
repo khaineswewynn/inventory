@@ -16,36 +16,36 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('permissions')->insert([
-            ['role_id' => 1, 'route_name' => 'create-sales'],
-            ['role_id' => 1, 'route_name' => 'edit-sales'],
-            ['role_id' => 1, 'route_name' => 'delete-sales'],
-            ['role_id' => 1, 'route_name' => 'view-sales'],
-            ['role_id' => 1, 'route_name' => 'create-purchase'],
-            ['role_id' => 1, 'route_name' => 'edit-purchase'],
-            ['role_id' => 1, 'route_name' => 'delete-purchase'],
-            ['role_id' => 1, 'route_name' => 'view-purchase'],
-            ['role_id' => 1, 'route_name' => 'create-stockprice'],
-            ['role_id' => 1, 'route_name' => 'edit-stockprice'],
-            ['role_id' => 1, 'route_name' => 'view-stockprice'],
-            ['role_id' => 1, 'route_name' => 'delete-stockprice'],
+        // DB::table('permissions')->insert([
+        //     ['role_id' => 1, 'route_name' => 'create-sales'],
+        //     ['role_id' => 1, 'route_name' => 'edit-sales'],
+        //     ['role_id' => 1, 'route_name' => 'delete-sales'],
+        //     ['role_id' => 1, 'route_name' => 'view-sales'],
+        //     ['role_id' => 1, 'route_name' => 'create-purchase'],
+        //     ['role_id' => 1, 'route_name' => 'edit-purchase'],
+        //     ['role_id' => 1, 'route_name' => 'delete-purchase'],
+        //     ['role_id' => 1, 'route_name' => 'view-purchase'],
+        //     ['role_id' => 1, 'route_name' => 'create-stockprice'],
+        //     ['role_id' => 1, 'route_name' => 'edit-stockprice'],
+        //     ['role_id' => 1, 'route_name' => 'view-stockprice'],
+        //     ['role_id' => 1, 'route_name' => 'delete-stockprice'],
 
-            ['role_id' => 2, 'route_name' => 'create-sales'],
-            ['role_id' => 2, 'route_name' => 'edit-sales'],
-            ['role_id' => 2, 'route_name' => 'delete-sales'],
-            ['role_id' => 2, 'route_name' => 'view-sales'],
-            ['role_id' => 2, 'route_name' => 'create-purchase'],
-            ['role_id' => 2, 'route_name' => 'edit-purchase'],
-            ['role_id' => 2, 'route_name' => 'delete-purchase'],
-            ['role_id' => 2, 'route_name' => 'view-purchase'],
-            ['role_id' => 2, 'route_name' => 'create-stockprice'],
-            ['role_id' => 2, 'route_name' => 'edit-stockprice'],
-            ['role_id' => 2, 'route_name' => 'view-stockprice'],
-            ['role_id' => 2, 'route_name' => 'delete-stockprice'],
+        //     ['role_id' => 2, 'route_name' => 'create-sales'],
+        //     ['role_id' => 2, 'route_name' => 'edit-sales'],
+        //     ['role_id' => 2, 'route_name' => 'delete-sales'],
+        //     ['role_id' => 2, 'route_name' => 'view-sales'],
+        //     ['role_id' => 2, 'route_name' => 'create-purchase'],
+        //     ['role_id' => 2, 'route_name' => 'edit-purchase'],
+        //     ['role_id' => 2, 'route_name' => 'delete-purchase'],
+        //     ['role_id' => 2, 'route_name' => 'view-purchase'],
+        //     ['role_id' => 2, 'route_name' => 'create-stockprice'],
+        //     ['role_id' => 2, 'route_name' => 'edit-stockprice'],
+        //     ['role_id' => 2, 'route_name' => 'view-stockprice'],
+        //     ['role_id' => 2, 'route_name' => 'delete-stockprice'],
 
-            ['role_id' => 3, 'route_name' => 'create-sales'],
-            ['role_id' => 4, 'route_name' => 'create-purchase']
+        //     ['role_id' => 3, 'route_name' => 'create-sales'],
+        //     ['role_id' => 4, 'route_name' => 'create-purchase']
             
-        ]);
+        // ]);
     }
 }

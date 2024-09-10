@@ -11,6 +11,18 @@ class LocationController extends Controller
     public function __construct(Location $location)
     {
         $this->locations = $location;
+
+        $this->middleware('permission:location-index|location-create|location-edit|
+        location-show|location-delete',['only'=>['index']]);//index is function
+
+        $this->middleware('permission:location-create',['only'=>['create','store']]);
+
+        $this->middleware('permission:location-edit',['only'=>['edit','update']]);
+
+        $this->middleware('permission:location-show',['only'=>['show']]);
+
+        $this->middleware('permission:location-delete',['only'=>['destroy']]);
+    
     }
     public function index()
     {

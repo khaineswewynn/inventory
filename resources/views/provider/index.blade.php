@@ -13,11 +13,6 @@
         @endif
         <h1 class="mb-4">Providers</h1>
         <a href="{{ route('provider.create') }}" class="btn btn-primary mb-3">Create Provider</a>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                {{ $message }}
-            </div>
-        @endif
         <table class="table table-bordered">
             <thead>
                 <tr>

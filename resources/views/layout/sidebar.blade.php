@@ -50,6 +50,24 @@
                     <span class="menu-title">Purchase</span>
                 </a>
             </li>
+            @can('admin', auth()->user())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('permission.index') }}">
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">Permission</span>
+                    </a>
+                </li>
+            @endcan
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                    <i class="menu-icon mdi mdi-floor-plan"></i>
+                    <span class="menu-title">User</span>
+                </a>
+            </li>
+            <li class="na-item mt-3">
+                @auth
+                    <a href="/logout" class=" nav-link btn btn-outline-danger">Logout</a>
+                @endauth
             </li>
         </ul>
     </nav>

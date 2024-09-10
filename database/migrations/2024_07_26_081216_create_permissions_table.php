@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('permissions',function(Blueprint $table){
-            $table->foreign('role_id')->on('roles')->references('id')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 

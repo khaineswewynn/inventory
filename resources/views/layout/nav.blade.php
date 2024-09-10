@@ -65,7 +65,12 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
             <ul class="navbar-nav">
                 <li class="nav-item fw-semibold d-none d-lg-block ms-0">
-                    <h1 class="welcome-text">Good Morning</h1>
+                    <div class="d-flex align-items-center">
+                        <h1 class="welcome-text">Good Morning - </h1>
+                        @auth
+                        <h2 class="ml-3">{{ auth()->user()->name }}</h2>
+                        @endauth
+                    </div>
                     <h3 class="welcome-sub-text">Your performance summary this week </h3>
                 </li>
             </ul>
