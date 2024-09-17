@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_no');
-            // $table->unsignedBigInteger('order_id');
             $table->date('purchaseorder_date');
+            $table->unsignedBigInteger('provider_id');
+            $table->decimal('total',8,2);
             $table->timestamps();
         });
-        // Schema::table('purchase_orders',function(Blueprint $table){
-        //     $table->foreign('order_id')->on('purchase_details')->references('id')->onDelete('cascade');
-        // });
-        
+
+        Schema::table('purchase_orders',function(Blueprint $table){
+            $table->foreign('provider_id')->on('providers')->references('id')->onDelete('cascade');
+        });
     }
 
     /**

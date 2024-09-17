@@ -26,6 +26,7 @@ class CheckPermission
         }
 
         // Redirect or return error if user does not have permission
-        return response()->view('errors.403', [], 403);
+        // return response()->view('errors.403', [], 403);
+        return response()->json(['error' => 'You do not have permission to perform this action.'], 403);
     }
 }
