@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__.'/../vendor/autoload.php';
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\WarehouseController;
 
 /*
@@ -43,26 +45,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
     Route::get('/stocks/details/{date}', [StockController::class, 'details'])->name('stocks.details');
     Route::resource('/sale', SalesController::class)->except(['destroy']);
-    Route::middleware('check.permission:delete-sales')->group(function () {
-        Route::delete('/sale/{sale}', [SalesController::class, 'destroy'])
-            ->name('sale.destroy');
-    });
 
-    Route::get('/roles-permissions/assign-permissions', [RolePermissionController::class, 'showRolesPermissions'])
-        ->name('assign-permissions');
+    Route::delete('/sale/{sale}', [SalesController::class, 'destroy'])
+    ->middleware('check.permission:delete-sales')
+    ->name('sale.destroy');
 
-    Route::middleware('check.permission:update-role-permissions')->group(function () {
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::resource('/role', RoleController::class);
+
+        Route::get('/roles-permissions/assign-permissions', [RolePermissionController::class, 'showRolesPermissions'])
+            ->name('assign-permissions');
+
         Route::post('/roles-permissions/assign-permissions', [RolePermissionController::class, 'updateRolePermissions'])
+            ->middleware('check.permission:update-role-permissions')
             ->name('update-role-permissions');
-    });
 
-    Route::get('/roles-permissions/assign-roles', [RolePermissionController::class, 'showAssignRolesToUsers'])
-        ->name('assign-roles');
+        Route::get('/roles-permissions/assign-roles', [RolePermissionController::class, 'showAssignRolesToUsers'])
+            ->name('assign-roles');
 
-    Route::middleware('check.permission:update-user-role')->group(function () {
         Route::post('/roles-permissions/assign-roles', [RolePermissionController::class, 'updateUserRole'])
+            ->middleware('check.permission:update-user-role')
             ->name('update-user-role');
     });
+
 
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

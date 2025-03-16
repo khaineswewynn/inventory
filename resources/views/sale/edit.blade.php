@@ -115,6 +115,7 @@
             <button type="submit" class="btn btn-primary">Update Sale</button>
         </form>
     </div>
+@endsection
 
     <script>
         function fetchPrice(selectElement, index) {

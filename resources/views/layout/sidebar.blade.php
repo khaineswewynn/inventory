@@ -61,6 +61,12 @@
             @endphp
             @if ($user && $user->role && $user->role->roles === 'Admin')
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('role.index') }}">
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">Roles</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('assign-permissions') }}">
                         <i class="menu-icon mdi mdi-floor-plan"></i>
                         <span class="menu-title">Roles & Permissions</span>
